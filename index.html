@@ -1,3 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0;URL='https://github.com/ducttape-infra'">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ducttape Infra tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #d8ebf2;
+      --surface: #ffffff;
+      --border: #b8d4de;
+      --text: #1a2b3c;
+      --text-dim: #4a6a7a;
+      --accent: #2563eb;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+
+    .hero {
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      background: linear-gradient(180deg, #c5e0ea 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero img {
+      width: 140px; height: auto;
+      border-radius: 16px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #0f172a;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .sub {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 1rem auto 2rem;
+    }
+    .hero .cta a {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: var(--accent);
+      color: #fff;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .hero .cta a:hover { background: #1d4ed8; }
+
+    section { padding: 3rem 2rem; }
+    section:nth-child(even) { background: var(--surface); }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .tool {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .tool:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    .tool h3 { font-size: 1.15rem; margin-bottom: 0.5rem; color: #0f172a; }
+    .tool .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .tool .tag.cli { background: #dbeafe; color: #1d4ed8; }
+    .tool .tag.lib { background: #d1fae5; color: #059669; }
+    .tool .tag.fmt { background: #fef3c7; color: #d97706; }
+    .tool p { font-size: 0.92rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
+    .tool .links { margin-top: 0.75rem; font-size: 0.88rem; }
+
+    .integration h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+    .integration p { color: var(--text-dim); font-size: 1.05rem; margin-bottom: 1rem; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
 </head>
+<body>
+
+<div class="hero">
+  <img src="images/ducttape.png" alt="Ducttape logo">
+  <h1>Ducttape <span>Infra</span> tools</h1>
+  <div class="cta">
+    <a href="https://github.com/ducttape-infra" target="_blank">View on GitHub &nearr;</a>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <p class="intro">
+      Like Dockerfiles, Ducttape Infra tools describe how to customize a base cloud image,
+      installing packages, configuring services, and enabling systemd units, producing
+      reusable virtual machine images. Machinefiles are compatible with Podman and Docker
+      Containerfiles, so you can create both containers and virtual machines from the same file!
+    </p>
+    <p class="intro">
+      It is not meant to replace tools you have, but rather augment, such as Lima.
+      This is also not replacing bootc, but rather provides you with a similar experience
+      to prepare cloud-init based images using Containerfiles, while still using a mutable
+      Virtual Machine, ideal for experimentation.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tools">
+
+      <div class="tool">
+        <div class="tag cli">CLI</div>
+        <h3>Ducttape</h3>
+        <p>A command-line tool that bridges container-like workflows with VM management.
+        Build, run, and share VM images using a syntax and lifecycle similar to Docker or
+        Podman, powered by the Machinefile format.</p>
+        <div class="links">
+          <a href="https://github.com/ducttape-infra/ducttape">GitHub &nearr;</a> &middot;
+          <a href="https://ducttape-vm.github.io">Website &nearr;</a>
+        </div>
+      </div>
+
+      <div class="tool">
+        <div class="tag lib">Library</div>
+        <div class="tag cli" style="margin-left:0.3rem">CLI</div>
+        <h3>Machinefile</h3>
+        <p>A lightweight execution engine that parses and executes Dockerfile or Containerfile
+        instructions directly on a host system. It bridges the gap between container-native
+        configuration formats and traditional host-based automation by treating a host (local
+        or remote) as the target &quot;container.&quot;</p>
+        <div class="links">
+          <a href="https://github.com/ducttape-infra/machinefile">GitHub &nearr;</a>
+        </div>
+      </div>
+
+      <div class="tool">
+        <div class="tag fmt">Format</div>
+        <div class="tag cli" style="margin-left:0.3rem">CLI</div>
+        <h3>Actionfile</h3>
+        <p>A Markdown-based configuration file that describes a set of actions, scripts, or
+        tasks for use in automation workflows, dotfile management, or application deployment.
+        Combines documentation, configuration, and executable code blocks in one file.</p>
+        <div class="links">
+          <a href="https://github.com/ducttape-infra/actionfile">GitHub &nearr;</a> &middot;
+          <a href="https://github.com/actionfile/specification">Specification &nearr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container integration">
+    <h2>Integration with existing tools</h2>
+    <p>Ducttape Infra tools are all about re-use and integration with existing workflows.
+    For example, we have examples with <strong>Packer</strong> which implements the
+    Container-to-VM pattern using Machinefiles.</p>
+    <p>Compatible with <strong>Podman</strong> and <strong>Docker</strong> Containerfiles -
+    the same file can produce both a container image and a VM image. Backed by
+    <strong>Lima</strong> for fast, reliable QEMU-based virtualisation.</p>
+    <p style="margin-top:1.5rem">
+      <a href="https://github.com/ducttape-infra/examples" style="font-weight:600;">
+        Browse examples &nearr;
+      </a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  Part of <a href="https://github.com/ducttape-infra">ducttape infra tools</a>.
+</footer>
+
+</body>
+</html>
